@@ -1,29 +1,10 @@
 
-<div class="door"></div>
-
-<!-- APRÈS (ajoute id + onclick) -->
-<div class="door" id="door1" onclick="playDoor(1)"></div>
-<div class="door" id="door2" onclick="playDoor(2)"></div>
-<div class="door" id="door3" onclick="playDoor(3)"></div>
-
-<script>
-// FIX CSP GitHub - NO eval !
-let choreDoor = Math.floor(Math.random() * 3) + 1;
-
-document.getElementById('door1').onclick = () => clickDoor(1);
-document.getElementById('door2').onclick = () => clickDoor(2);
-document.getElementById('door3').onclick = () => clickDoor(3);
-
-function clickDoor(num) {
-  const door = document.getElementById('door' + num);
-  door.style.backgroundImage = num === choreDoor ? 
-    "url('cadeau.jpg')" : "url('robot.jpg')"; // tes images !
-  
-  if (num === choreDoor) {
-    alert('🎂 JOYEUX ANNIV ! Gagné !');
-  } else {
-    alert('😅 Autre porte !');
-  }
-}
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Birthday Pixel Doors</title>
+<style>
+body { 
+  background: linear-gradient(to bottom
 
