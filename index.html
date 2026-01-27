@@ -1,10 +1,25 @@
+<!-- PORTES avec ID -->
+<div class="door" id="door1" style="background-image: url('porte1.png');"></div>
+<div class="door" id="door2" style="background-image: url('porte2.png');"></div>
+<div class="door" id="door3" style="background-image: url('porte3.png');"></div>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Birthday Pixel Doors</title>
-<style>
-body { 
-  background: linear-gradient(to bottom
-
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let goodDoor = Math.floor(Math.random() * 3) + 1;
+  
+  ['door1','door2','door3'].forEach((id, index) => {
+    document.getElementById(id).addEventListener("click", function() {
+      const doorNum = index + 1;
+      const door = document.getElementById(id);
+      
+      if (doorNum === goodDoor) {
+        door.style.backgroundImage = "url('cadeau.png')";
+        alert('🎉 Gagné ! Joyeux Anniv !');
+      } else {
+        door.style.backgroundImage = "url('robot.png')";
+        alert('🤖 Robot... réessaye !');
+      }
+    });
+  });
+});
+</script>
