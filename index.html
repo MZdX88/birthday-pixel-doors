@@ -4,7 +4,7 @@
 <style>
 body { 
   background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460); 
-  color: white; font-family: 'Arial Black'; 
+  color: white; font-family: 'Arial Black', Arial; 
   text-align: center; margin: 0; padding: 30px; min-height: 100vh;
 }
 .login-box, .game-box {
@@ -36,32 +36,32 @@ h2 { font-size: 1.4em; color: #ff6b6b; }
 <body>
 <!-- LOGIN Shiyuan Zhang -->
 <div id="login" class="login-box">
-  <h1>🎂 Cadeau Surprise</h1>
-  <h2>Identification requise</h2>
-  <p>Pour Shiyuan seulement 💝</p>
+  <h1>🎂 Surprise Gift</h1>
+  <h2>Identity Verification Required</h2>
+  <p>For Shiyuan only 💝</p>
   
-  <input type="text" id="name" placeholder="Name..." maxlength="20">
-  <input type="text" id="surname" placeholder="Surname..." maxlength="20">
+  <input type="text" id="name" placeholder="First Name..." maxlength="20">
+  <input type="text" id="surname" placeholder="Last Name..." maxlength="20">
   <br>
-  <button onclick="checkLogin()">🔓 Accéder au jeu</button>
+  <button onclick="checkLogin()">🔓 Enter the Game</button>
 </div>
 
-<!-- JEU PORTES -->
+<!-- DOORS GAME -->
 <div id="game" class="game-box hidden">
-  <h1>🎮 Portes Magiques !</h1>
-  <h2>Choisis la bonne porte pour ton cadeau parfait 💝</h2>
+  <h1>🎮 Magic Doors!</h1>
+  <h2>Choose the right door for your perfect gift 💝</h2>
   
   <div class="door" id="door1" style="background-image: url('porte1.gif')"></div>
   <div class="door" id="door2" style="background-image: url('porte2.gif')"></div>
   <div class="door" id="door3" style="background-image: url('porte3.gif')"></div>
   
-  <br><button onclick="location.reload()">🔄 Nouvelle partie</button>
+  <br><button onclick="location.reload()">🔄 New Game</button>
 </div>
 
 <script>
 let goodDoor = Math.floor(Math.random() * 3) + 1;
 
-// LOGIN Shiyuan Zhang
+// Shiyuan Zhang LOGIN
 function checkLogin() {
   const name = document.getElementById('name').value.trim().toLowerCase();
   const surname = document.getElementById('surname').value.trim().toLowerCase();
@@ -70,24 +70,24 @@ function checkLogin() {
     document.getElementById('login').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
   } else {
-    alert('❌ Accès refusé ! Nom: Shiyuan | Prénom: Zhang 💕');
+    alert('❌ Access Denied!\nFirst Name: Shiyuan\nLast Name: Zhang 💕');
     document.getElementById('name').value = '';
     document.getElementById('surname').value = '';
   }
 }
 
-// PORTES (gagné/perdu sans robot)
+// DOORS GAME (win/lose - no robot)
 ['door1','door2','door3'].forEach((id, i) => {
   document.getElementById(id).onclick = () => {
     const door = document.getElementById(id);
     if (i+1 === goodDoor) {
       door.style.backgroundImage = "url('cadeau.gif')";
       setTimeout(() => {
-        alert('🎉 INCROYABLE ! Joyeux Anniversaire SHIYUAN ZHANG ! 🎂\nTu as trouvé le trésor parfait ! 💝✨🇨🇳');
+        alert('🎉 AMAZING! Happy Birthday SHIYUAN ZHANG! 🎂\nYou found the perfect treasure! 💝✨🇨🇳');
       }, 500);
     } else {
-      door.style.backgroundImage = "url('porte-perdue.gif')"; // image neutre ou rien
-      alert('😅 Pas de cadeau ici... Une autre porte t\'attend ! 💕');
+      door.style.backgroundImage = "url('porte-perdue.gif')";
+      alert('😅 No gift here... Another door awaits! 💕');
     }
   };
 });
