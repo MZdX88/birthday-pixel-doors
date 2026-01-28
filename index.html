@@ -2,74 +2,78 @@
 <html>
 <head>
 <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
   background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460); 
-  color: white; font-family: 'Arial Black', Arial; 
-  text-align: center; margin: 0; padding: 30px; min-height: 100vh;
+  color: white; font-family: Arial Black, Arial; 
+  text-align: center; padding: 30px; min-height: 100vh;
 }
-.login-box, .game-box {
-  max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.85);
-  padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+.login-box, .game-box { 
+  max-width: 500px; margin: 0 auto; 
+  background: rgba(0,0,0,0.9); padding: 40px; 
+  border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
 }
 input { 
-  width: 85%; padding: 18px; margin: 12px; border: 2px solid #444; 
-  border-radius: 12px; font-size: 20px; background: #222; color: white;
+  width: 85%; padding: 18px; margin: 10px; 
+  border: 2px solid #555; border-radius: 12px; 
+  font-size: 20px; background: #333; color: white; 
 }
-input:focus { border-color: #ff6b6b; outline: none; box-shadow: 0 0 15px rgba(255,107,107,0.5); }
+input:focus { border-color: #ff6b6b; outline: none; }
 button { 
-  width: 90%; padding: 18px; background: linear-gradient(45deg, #ff6b6b, #ff8e8e); 
-  border: none; border-radius: 12px; font-size: 22px; cursor: pointer; font-weight: bold;
-  margin: 10px 0;
+  width: 90%; padding: 18px; background: #ff6b6b; 
+  border: none; border-radius: 12px; font-size: 22px; 
+  cursor: pointer; font-weight: bold; margin: 10px 0; 
 }
-button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,107,107,0.6); }
-.doors-container {
-  display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+button:hover { background: #ff5252; transform: scale(1.02); }
+.doors-container { 
+  display: flex; justify-content: center; gap: 25px; 
+  flex-wrap: wrap; margin: 30px 0; 
 }
 .door {
-  width: 220px; height: 260px; 
-  cursor: pointer; border: 6px solid #ff6b6b; border-radius: 25px;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
-  transition: all 0.4s; position: relative;
+  width: 200px; height: 240px; border: 5px solid #ff6b6b; 
+  border-radius: 20px; background-size: contain !important; 
+  background-repeat: no-repeat !important; background-position: center !important; 
+  cursor: pointer; transition: all 0.4s; position: relative; flex-shrink: 0;
 }
 .door::before {
-  content: attr(data-door); position: absolute; bottom: -30px; 
-  font-size: 14px; color: #ff6b6b; font-weight: bold; width: 100%;
+  content: attr(data-door); position: absolute; bottom: -25px; 
+  left: 50%; transform: translateX(-50%); font-size: 12px; 
+  color: #ff6b6b; font-weight: bold; white-space: nowrap;
 }
 .door:hover { 
-  transform: scale(1.1) rotate(1deg); 
-  box-shadow: 0 20px 40px rgba(255,107,107,0.8); 
-  border-color: #fff;
+  transform: scale(1.1); box-shadow: 0 15px 35px rgba(255,107,107,0.6); 
+  border-color: #fff; 
 }
-.hidden { display: none; }
-h1 { font-size: 3em; text-shadow: 3px 3px 8px rgba(0,0,0,1); margin-bottom: 10px; }
-h2 { font-size: 1.5em; color: #ff6b6b; }
+.hidden { display: none !important; }
+h1 { font-size: 2.8em; text-shadow: 3px 3px 8px #000; margin: 0 0 15px 0; }
+h2 { font-size: 1.4em; color: #ff6b6b; margin-bottom: 20px; }
 </style>
 </head>
 <body>
-<!-- LOGIN -->
+
+<!-- LOGIN Shiyuan Zhang -->
 <div id="login" class="login-box">
   <h1>🎂 Surprise Gift</h1>
-  <h2>Identity Verification Required</h2>
-  <p>For Shiyuan only 💝</p>
-  
+  <h2>Identity Verification</h2>
+  <p>Private access for Shiyuan only 💝</p>
   <input type="text" id="name" placeholder="First Name..." maxlength="20">
   <input type="text" id="surname" placeholder="Last Name..." maxlength="20">
-  <br>
-  <button onclick="checkLogin()">🔓 Enter the Magic Doors</button>
+  <button onclick="checkLogin()">🔓 Enter Magic Doors</button>
 </div>
 
 <!-- GAME -->
 <div id="game" class="game-box hidden">
-  <h1>🎮 Choose Your Magic Door!</h1>
-  <h2>One door hides your perfect birthday gift 💝</h2>
+  <h1>🎮 Choose Your Door!</h1>
+  <h2>One door has your perfect gift 💝</h2>
   
   <div class="doors-container">
-    <div class="door" id="door1" data-door="Autumn Door" style="background-image: url('Porte1.gif.jpg')"></div>
-    <div class="door" id="door2" data-door="Fancy Kawaii" style="background-image: url('Porte2.gif.jpg')"></div>
-    <div class="door" id="door3" data-door="Love Door" style="background-image: url('Porte3.gif.jpg')"></div>
+    <!-- TES PORTES EXACTES -->
+    <div class="door" id="door1" data-door="Autumn Door 🧡" style="background-image: url('Porte1.gif.jpg')"></div>
+    <div class="door" id="door2" data-door="Fancy Kawaii 💕" style="background-image: url('Porte2.gif.jpg')"></div>
+    <div class="door" id="door3" data-door="Love Door ❤️" style="background-image: url('Porte3.gif.jpg')"></div>
   </div>
   
-  <br><button onclick="location.reload()">🔄 New Game</button>
+  <button onclick="location.reload()">🔄 Play Again</button>
 </div>
 
 <script>
@@ -78,36 +82,38 @@ let goodDoor = Math.floor(Math.random() * 3) + 1;
 function checkLogin() {
   const name = document.getElementById('name').value.trim().toLowerCase();
   const surname = document.getElementById('surname').value.trim().toLowerCase();
-  
   if (name === 'shiyuan' && surname === 'zhang') {
     document.getElementById('login').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
   } else {
-    alert('❌ Access Denied!\nFirst Name: shiyuan\nLast Name: zhang 💕');
-    document.getElementById('name').value = '';
-    document.getElementById('surname').value = '';
+    alert('❌ Access Denied!\nshiyuan + zhang only 💕');
+    document.getElementById('name').value = document.getElementById('surname').value = '';
   }
 }
 
-// Doors game
+// Jeu des portes
 ['door1','door2','door3'].forEach((id, i) => {
   document.getElementById(id).onclick = () => {
     const door = document.getElementById(id);
     if (i+1 === goodDoor) {
+      // Gagné !
       door.style.backgroundImage = "url('cadeau.gif')";
-      door.setAttribute('data-door', '🎉 TREASURE FOUND! 🎉');
-      setTimeout(() => {
+      door.dataset.door = '🎉 TREASURE FOUND! 🎉';
+      setTimeout(()=>{
         alert('🎉 PERFECT! Happy Birthday SHIYUAN ZHANG! 🎂\nYou found the ultimate gift! 💝✨🇨🇳');
-      }, 600);
+      }, 500);
     } else {
-      door.style.filter = 'grayscale(100%) brightness(0.7)';
-      door.setAttribute('data-door', 'No gift... Try another!');
-      setTimeout(() => {
-        alert('😅 Empty door... The gift is in another door! 💕');
-      }, 300);
+      // Perdu
+      door.style.opacity = '0.6';
+      door.style.filter = 'grayscale(80%)';
+      door.dataset.door = 'Empty... Try another!';
+      setTimeout(()=>{
+        alert('😅 No gift here! Choose another door 💕');
+      }, 200);
     }
   };
 });
 </script>
+
 </body>
 </html>
