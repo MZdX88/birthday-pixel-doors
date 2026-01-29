@@ -1,7 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460); 
+  color: white; font-family: Arial Black, Arial; 
+  text-align: center; padding: 30px; min-height: 100vh;
+}
+.login-box, .game-box { 
+  max-width: 500px; margin: 0 auto; 
+  background: rgba(0,0,0,0.9); padding: 40px; 
+  border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
+}
+input { 
+  width: 85%; padding: 18px; margin: 10px; 
+  border: 2px solid #555; border-radius: 12px; 
+  font-size: 20px; background: #333; color: white; 
+}
+input:focus { border-color: #ff6b6b; outline: none; }
+button { 
+  width: 90%; padding: 18px; background: #ff6b6b; 
+  border: none; border-radius: 12px; font-size: 22px; 
+  cursor: pointer; font-weight: bold; margin: 10px 0; 
+}
+button:hover { background: #ff5252; transform: scale(1.02); }
+.doors-container { 
+  display: flex; justify-content: center; gap: 25px; 
+  flex-wrap: wrap; margin: 30px 0; 
+}
+.door {
+  width: 200px; height: 240px; border: 5px solid #ff6b6b; 
+  border-radius: 20px; background-size: contain !important; 
+  background-repeat: no-repeat !important; background-position: center !important; 
+  cursor: pointer; transition: all 0.4s; position: relative; flex-shrink: 0;
+}
+.door::before {
+  content: attr(data-door); position: absolute; bottom: -25px; 
+  left: 50%; transform: translateX(-50%); font-size: 12px; 
+  color: #ff6b6b; font-weight: bold; white-space: nowrap;
+}
+.door:hover { 
+  transform: scale(1.1); box-shadow: 0 15px 35px rgba(255,107,107,0.6); 
+  border-color: #fff; 
+}
+.hidden { display: none !important; }
+h1 { font-size: 2.8em; text-shadow: 3px 3px 8px #000; margin: 0 0 15px 0; }
+h2 { font-size: 1.4em; color: #ff6b6b; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN Shiyuan Zhang -->
+<div id="login" class="login-box">
+  <h1>🎂 Surprise Gift</h1>
+  <h2>Identity Verification</h2>
+  <p>Private access for Shiyuan only 💝</p>
+  <input type="text" id="name" placeholder="First Name..." maxlength="20">
+  <input type="text" id="surname" placeholder="Last Name..." maxlength="20">
+  <button onclick="checkLogin()">🔓 Enter Magic Doors</button>
+</div>
+
+<!-- GAME -->
+<div id="game" class="game-box hidden">
+  <h1>🎮 Choose Your Door!</h1>
+  <h2>One door has your perfect gift 💝</h2>
+  
+  <div class="doors-container">
+    <!-- TES PORTES EXACTES -->
+    <div class="door" id="door1" data-door="Autumn Door 🧡" style="background-image: url('Porte1.gif.jpg')"></div>
+    <div class="door" id="door2" data-door="Fancy Kawaii 💕" style="background-image: url('Porte2.gif.jpg')"></div>
+    <div class="door" id="door3" data-door="Love Door ❤️" style="background-image: url('Porte3.gif.jpg')"></div>
+  </div>
+  
+  <button onclick="location.reload()">🔄 Play Again</button>
+</div>
+
 <script>
-// RESET - 3 portes fonctionnelles garanties
 let goodDoor = Math.floor(Math.random() * 3) + 1;
-let gameWon = false;
 
 function checkLogin() {
   const name = document.getElementById('name').value.trim().toLowerCase();
@@ -10,11 +86,34 @@ function checkLogin() {
     document.getElementById('login').classList.add('hidden');
     document.getElementById('game').classList.remove('hidden');
   } else {
-    alert('❌ shiyuan + zhang only 💕');
+    alert('❌ Access Denied!\nshiyuan + zhang only 💕');
     document.getElementById('name').value = document.getElementById('surname').value = '';
   }
 }
 
-// FIX : 3 portes identiques - TEST MAINTENANT
-document.getElementById('door1').onclick = doorClick;
-document.getElementById('door2').onclick
+// Jeu des portes
+['door1','door2','door3'].forEach((id, i) => {
+  document.getElementById(id).onclick = () => {
+    const door = document.getElementById(id);
+    if (i+1 === goodDoor) {
+      // Gagné !
+      door.style.backgroundImage = "url('cadeau.gif')";
+      door.dataset.door = '🎉 TREASURE FOUND! 🎉';
+      setTimeout(()=>{
+        alert('🎉 PERFECT! Happy Birthday SHIYUAN ZHANG! 🎂\nYou found the ultimate gift! 💝✨🇨🇳');
+      }, 500);
+    } else {
+      // Perdu
+      door.style.opacity = '0.6';
+      door.style.filter = 'grayscale(80%)';
+      door.dataset.door = 'Empty... Try another!';
+      setTimeout(()=>{
+        alert('🎉 PERFECT! Happy Birthday SHIYUAN ZHANG! 🎂\nYou found the ultimate gift! 💝✨🇨🇳');
+      }, 200);
+    }
+  };
+});
+</script>
+
+</body>
+</html>
